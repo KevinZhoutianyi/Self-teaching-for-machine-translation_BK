@@ -37,28 +37,28 @@ def get_train_Dataset(dataset, tokenizer):
     # get the training data
     train_sentence = [x['en'] for x in dataset]
     train_target = [x['fr'] for x in dataset]
-
-
+    n = len(train_sentence)
+    
     # ratio = 0.3 # ratio of num of u/x tensor should be the same shape, cant seperate them here
-
-    attn_idx = torch.arange(len(train_sentence))        
-
+    n = n//2*2
+    attn_idx = torch.arange(n//2)        
+    print(attn_idx)#tensor([   0,    1,    2,  ..., 7575, 7576, 7577])
     ########################################################################################################
     
     # tokenize the article using the bart tokenizer
-    model1_input_ids, model1_input_attention_mask = tokenize(train_sentence, tokenizer, max_length = article_length)
+    model1_input_ids, model1_input_attention_mask = tokenize(train_sentence[:n//2], tokenizer, max_length = article_length)
     print("Input shape: ")
     print(model1_input_ids.shape, model1_input_attention_mask.shape)
     
     # tokenize the target using the bart tokenizer
-    model1_target_ids, model1_target_attention_mask = tokenize(train_target, tokenizer, max_length = summary_length)
+    model1_target_ids, model1_target_attention_mask = tokenize(train_target[:n//2], tokenizer, max_length = summary_length)
     print("Target shape: ")
     print(model1_target_ids.shape, model1_target_attention_mask.shape)    
 
     ########################################################################################################
     
     # tokenize the target using the gpt tokenizer
-    model2_input_raw_input_ids, model2_input_raw_attention_mask = tokenize(train_sentence, tokenizer, max_length = article_length)
+    model2_input_raw_input_ids, model2_input_raw_attention_mask = tokenize(train_sentence[-n//2:], tokenizer, max_length = article_length)
     print("Input shape: ")
     print(model2_input_raw_input_ids.shape, model2_input_raw_attention_mask.shape)    
 

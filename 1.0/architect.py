@@ -23,13 +23,13 @@ def _concat(xs):
 
 class Architect(object):
 
-    def __init__(self, w_model, v_model, DS_model, A):
+    def __init__(self, w_model, v_model, A):
 
         self.w_momentum = momentum
         self.w_decay = decay
 
         self.v_momentum =momentum
-        self.v = decay
+        self.v_decay = decay
 
         self.w_model = w_model
 
@@ -56,8 +56,12 @@ class Architect(object):
         theta = _concat(self.w_model.parameters()).data
         dtheta = _concat(torch.autograd.grad(loss, self.w_model.parameters(), retain_graph = True )).data + self.w_decay*theta
         
+        try:
+            moment = _concat(w_optimizer.state[v]['momentum_buffer'] for v in self.w_model.parameters()).mul_(self.w_momentum)
+        except:
+            moment = torch.zeros_like(theta)
         # convert to the model
-        unrolled_w_model = self._construct_w_model_from_theta(theta.sub(eta_w, dtheta))
+        unrolled_w_model = self._construct_w_model_from_theta(theta.sub(eta_w, moment+dtheta))
         return unrolled_w_model
 
     # reshape the w model parameters
@@ -91,19 +95,19 @@ class Architect(object):
     def _compute_unrolled_v_model(self, input, input_attn,  unrolled_w_model,  eta_v, v_optimizer):
 
         # DS loss on augmented dataset
-        loss_aug = calc_loss_aug(input, input_attn, unrolled_w_model,self.v_model)
+        loss = calc_loss_aug(input, input_attn, unrolled_w_model,self.v_model)
 
-        loss = (self.lambda_par*loss_aug)
         # Unrolled model
         theta = _concat(self.v_model.parameters()).data
+       
+        dtheta = _concat(torch.autograd.grad(loss, self.v_model.parameters(), retain_graph = True )).data + self.v_decay*theta
+        
         try:
-            moment = _concat(v_optimizer.state[v]['momentum_buffer'] for v in self.v_model.parameters()).mul_(self.DS_network_momentum)
+            moment = _concat(v_optimizer.state[v]['momentum_buffer'] for v in self.v_model.parameters()).mul_(self.v_momentum)
         except:
             moment = torch.zeros_like(theta)
-        dtheta = _concat(torch.autograd.grad(loss, self.v_model.parameters(), retain_graph = True )).data + self.DS_network_weight_decay*theta
-        
         # convert to the model
-        unrolled_v_model = self._construct_v_model_from_theta(theta.sub(eta_v, moment+dtheta))
+        unrolled_v_model = self._construct_v_model_from_theta(theta.sub(eta_v, dtheta+moment))
 
         return unrolled_v_model
 
@@ -131,154 +135,71 @@ class Architect(object):
     #########################################################################################
 
     # one step update for the importance parameter A
-    def step(self, article_DS, article_DS_attn, summary_DS, summary_DS_attn, article_bart, article_bart_attn, summary_bart, 
-        summary_bart_attn, summary_gpt, summary_gpt_attn, valid_article_DS, valid_summary_DS, valid_article_DS_attn, 
-        valid_summary_DS_attn, attn_idx, eta_gpt, eta_bart, eta_DS, gpt_optimizer, bart_optimizer, DS_optimizer):
+    def step(self, w_input, w_target, w_input_attn,  w_target_attn, w_optimizer,v_input, v_input_attn,valid_input_v, valid_input_v_attn, valid_out_v, 
+                valid_out_v_attn, v_optimizer, attn_idx,  eta_w,eta_v):
         
-        # self.optimizer_A.zero_grad()
+        self.optimizer_A.zero_grad()
 
         # self.optimizer_B.zero_grad()
+        # print("architec shape:",w_input.shape, w_target.shape, w_input_attn.shape, w_target_attn.shape, attn_idx.shape)
+        unrolled_w_model = self._compute_unrolled_w_model(w_input, w_target, w_input_attn, w_target_attn, attn_idx, eta_w, w_optimizer)
 
-        # unrolled_gpt_model = self._compute_unrolled_gpt_model(summary_gpt, summary_gpt, summary_gpt_attn, summary_gpt_attn, attn_idx, eta_gpt, gpt_optimizer)
+        unrolled_w_model.train()
 
-        # unrolled_gpt_model.gpt_model.train()
+        # unrolled_bartrt_model.bart_model.train()
 
-        # unrolled_bart_model = self._compute_unrolled_bart_model(summary_bart, article_bart, summary_bart_attn, article_bart_attn, attn_idx, eta_bart, bart_optimizer)
+        unrolled_v_model = self._compute_unrolled_v_model(v_input, v_input_attn,  unrolled_w_model,  eta_v, v_optimizer)
 
-        # unrolled_bart_model.bart_model.train()
+        _, unrolled_v_loss = unrolled_v_model.loss( valid_input_v, valid_input_v_attn,  valid_out_v, valid_out_v_attn)
 
-        # unrolled_DS_model = self._compute_unrolled_DS_model(article_DS, summary_DS, summary_gpt, article_DS_attn, summary_DS_attn, summary_gpt_attn, unrolled_gpt_model, unrolled_bart_model, attn_idx, eta_DS, DS_optimizer)
+        unrolled_v_model.train()
 
-        # _, unrolled_DS_loss = unrolled_DS_model.loss(valid_article_DS, valid_article_DS_attn, valid_summary_DS, valid_summary_DS_attn)
+        unrolled_v_loss.backward()
 
-        # unrolled_DS_model.train()
+        vector_s_dash = [v.grad.data for v in unrolled_v_model.parameters()]
 
-        # unrolled_DS_loss.backward()
 
-        # vector_s_dash = [v.grad.data for v in unrolled_DS_model.parameters()]
+        implicit_grads_A = self._outer_A(vector_s_dash, w_input, w_target, w_input_attn,  w_target_attn, v_input, v_input_attn, attn_idx, unrolled_w_model, eta_w, eta_v) 
 
-        # implicit_grads_B = self._outer_B(vector_s_dash, article_bart, article_bart_attn, summary_bart, summary_bart_attn, summary_gpt, summary_gpt_attn, 
-        #     attn_idx, unrolled_gpt_model, unrolled_bart_model, eta_bart, eta_DS)
 
-        # implicit_grads_A = self._outer_A(vector_s_dash, summary_gpt, summary_gpt_attn, attn_idx, unrolled_gpt_model, 
-        #     unrolled_bart_model, eta_gpt, eta_DS)
+    
 
         # # change to ctg dataset importance
         # # change to .parameters()
-        # for v, g in zip(self.B.parameters(), implicit_grads_B):
-        #     if v.grad is None:
-        #         v.grad = Variable(g.data)
-        #     else:
-        #         v.grad.data.copy_(g.data)
+        for v, g in zip(self.A.parameters(), implicit_grads_A):
+            if v.grad is None:
+                v.grad = Variable(g.data)
+            else:
+                v.grad.data.copy_(g.data)
 
-        # self.optimizer_B.step()
+        self.optimizer_A.step()
 
-        # # change to ctg dataset importance
-        # # change to .parameters()
-        # for v, g in zip(self.A.parameters(), implicit_grads_A):
-        #     if v.grad is None:
-        #         v.grad = Variable(g.data)
-        #     else:
-        #         v.grad.data.copy_(g.data)
+        del unrolled_w_model
 
-        # self.optimizer_A.step()
+        del unrolled_v_model
 
-        # del unrolled_gpt_model
-
-        # del unrolled_bart_model
-
-        # del unrolled_DS_model
-
-        # gc.collect()
+        gc.collect()
 
     ######################################################################
-    # finite difference approximation of the hessian and the vector product for T
-    def _hessian_vector_product_B(self, vector, input, target, input_attn, target_attn, attn_idx, r=1e-2):
-        R = r / _concat(vector).norm()
-        for p, v in zip(self.bart_model.bart_model.parameters(), vector):
-            p.data.add_(R, v)
-        loss = CTG_loss(input, input_attn, target, target_attn, attn_idx, self.B, self.bart_model)
 
-        # change to ctg dataset importance
-        grads_p = torch.autograd.grad(loss, self.B.parameters())
-
-        for p, v in zip(self.bart_model.bart_model.parameters(), vector):
-            p.data.sub_(2*R, v)
-        loss = CTG_loss(input, input_attn, target, target_attn, attn_idx, self.B, self.bart_model)
-
-        # change to ctg dataset importance
-        # change to .parameters()
-        grads_n = torch.autograd.grad(loss, self.B.parameters())
-
-        for p, v in zip(self.bart_model.bart_model.parameters(), vector):
-            p.data.add_(R, v)
-
-        return [(x-y).div_(2*R) for x, y in zip(grads_p, grads_n)]
-
-
-    ######################################################################
-    # function for the product of hessians and the vector product wrt T and function for the product of
-    # hessians and the vector product wrt G
-    def _outer_B(self, vector_s_dash, article_bart, article_bart_attn, summary_bart, summary_bart_attn, summary_gpt, summary_gpt_attn, 
-        attn_idx, unrolled_gpt_model, unrolled_bart_model, eta_bart, eta_DS, r=1e-2):
-        
-        R1 = r / _concat(vector_s_dash).norm()
-
-        # plus S
-        for p, v in zip(self.DS_model.parameters(), vector_s_dash):
-            p.data.add_(R1, v)
-
-        unrolled_bart_model.bart_model.train()
-
-        # use the bart model
-
-        loss_aug_p = calc_loss_aug(summary_gpt, summary_gpt_attn, unrolled_gpt_model, unrolled_bart_model, self.DS_model)
-
-        # T
-        vector_dash = torch.autograd.grad(loss_aug_p, unrolled_bart_model.bart_model.parameters(), retain_graph = True)
-
-        grad_part1 = self._hessian_vector_product_B(vector_dash, summary_bart, article_bart, summary_bart_attn, article_bart_attn, attn_idx)
-
-        # minus S
-        for p, v in zip(self.DS_model.parameters(), vector_s_dash):
-            p.data.sub_(2*R1, v)
-
-        loss_aug_m = calc_loss_aug(summary_gpt, summary_gpt_attn, unrolled_gpt_model, unrolled_bart_model, self.DS_model)
-        
-        # T
-
-        vector_dash = torch.autograd.grad(loss_aug_m, unrolled_bart_model.bart_model.parameters(), retain_graph = True)
-
-        grad_part2 = self._hessian_vector_product_B(vector_dash, summary_bart, article_bart, summary_bart_attn, article_bart_attn, attn_idx)
-
-        for p, v in zip(self.DS_model.parameters(), vector_s_dash):
-            p.data.add_(R1, v)
-
-        grad = [(x-y).div_((2*R1)/(eta_bart*eta_DS*self.lambda_par)) for x, y in zip(grad_part1, grad_part2)]
-
-        return grad
-
-
-    ######################################################################
-    # finite difference approximation of the hessian and the vector product for T
     def _hessian_vector_product_A(self, vector, input, target, input_attn, target_attn, attn_idx, r=1e-2):
         R = r / _concat(vector).norm()
-        for p, v in zip(self.gpt_model.gpt_model.parameters(), vector):
+        for p, v in zip(self.w_model.parameters(), vector):
             p.data.add_(R, v)
-        loss = CTG_loss(input, input_attn, target, target_attn, attn_idx, self.A, self.gpt_model)
+        loss = CTG_loss(input, input_attn, target, target_attn, attn_idx, self.A, self.w_model)
 
         # change to ctg dataset importance
         grads_p = torch.autograd.grad(loss, self.A.parameters())
 
-        for p, v in zip(self.gpt_model.gpt_model.parameters(), vector):
+        for p, v in zip(self.w_model.parameters(), vector):
             p.data.sub_(2*R, v)
-        loss = CTG_loss(input, input_attn, target, target_attn, attn_idx, self.A, self.gpt_model)
+        loss = CTG_loss(input, input_attn, target, target_attn, attn_idx, self.A, self.w_model)
 
         # change to ctg dataset importance
         # change to .parameters()
         grads_n = torch.autograd.grad(loss, self.A.parameters())
 
-        for p, v in zip(self.gpt_model.gpt_model.parameters(), vector):
+        for p, v in zip(self.w_model.gpt_model.parameters(), vector):
             p.data.add_(R, v)
 
         return [(x-y).div_(2*R) for x, y in zip(grads_p, grads_n)]
@@ -287,42 +208,38 @@ class Architect(object):
     ######################################################################
     # function for the product of hessians and the vector product wrt T and function for the product of
     # hessians and the vector product wrt G
-    def _outer_A(self, vector_s_dash, summary_gpt, summary_gpt_attn, attn_idx, unrolled_gpt_model, 
-        unrolled_bart_model, eta_gpt, eta_DS, r=1e-2):
-        
+    def _outer_A(self, vector_s_dash, w_input, w_target, w_input_attn,  w_target_attn, input_v, input_v_attn, attn_idx, unrolled_w_model, eta_w, eta_v, r=1e-2):
+        #first finite difference method
         R1 = r / _concat(vector_s_dash).norm()
 
-        # plus S
-        for p, v in zip(self.DS_model.parameters(), vector_s_dash):
+        for p, v in zip(self.v_model.parameters(), vector_s_dash):
             p.data.add_(R1, v)
 
-        unrolled_gpt_model.gpt_model.train()
+        unrolled_w_model.train()
 
-        # use the gpt model
+        loss_aug_p = calc_loss_aug(input_v, input_v_attn, unrolled_w_model, self.v_model)
 
-        loss_aug_p = calc_loss_aug(summary_gpt, summary_gpt_attn, unrolled_gpt_model, unrolled_bart_model, self.DS_model)
 
-        # T
-        vector_dash = torch.autograd.grad(loss_aug_p, unrolled_gpt_model.gpt_model.parameters(), retain_graph = True)
+        vector_dash = torch.autograd.grad(loss_aug_p, unrolled_w_model.parameters(), retain_graph = True)
 
-        grad_part1 = self._hessian_vector_product_A(vector_dash, summary_gpt, summary_gpt, summary_gpt_attn, summary_gpt_attn, attn_idx)
+        grad_part1 = self._hessian_vector_product_A(vector_dash, w_input, w_target, w_input_attn, w_target_attn, attn_idx)
 
         # minus S
-        for p, v in zip(self.DS_model.parameters(), vector_s_dash):
+        for p, v in zip(self.v_model.parameters(), vector_s_dash):
             p.data.sub_(2*R1, v)
 
-        loss_aug_m = calc_loss_aug(summary_gpt, summary_gpt_attn, unrolled_gpt_model, unrolled_bart_model, self.DS_model)
+        loss_aug_m = calc_loss_aug(input_v, input_v_attn, unrolled_w_model, self.v_model)
         
         # T
 
-        vector_dash = torch.autograd.grad(loss_aug_m, unrolled_gpt_model.gpt_model.parameters(), retain_graph = True)
+        vector_dash = torch.autograd.grad(loss_aug_m, unrolled_w_model.parameters(), retain_graph = True)
 
-        grad_part2 = self._hessian_vector_product_A(vector_dash, summary_gpt, summary_gpt, summary_gpt_attn, summary_gpt_attn, attn_idx)
+        grad_part2 = self._hessian_vector_product_A(vector_dash, w_input, w_target, w_input_attn, w_target_attn , attn_idx)
 
         for p, v in zip(self.DS_model.parameters(), vector_s_dash):
             p.data.add_(R1, v)
 
-        grad = [(x-y).div_((2*R1)/(eta_gpt*eta_DS*self.lambda_par)) for x, y in zip(grad_part1, grad_part2)]
+        grad = [(x-y).div_((2*R1)/(eta_w*eta_v)) for x, y in zip(grad_part1, grad_part2)]
 
         return grad
 

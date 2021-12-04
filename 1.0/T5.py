@@ -64,7 +64,7 @@ class T5(nn.Module):
     def forward(self, input_ids, input_attn, target_ids = None, target_attn = None):
 
         inp_emb = self.embedding(input_ids)/self.enc_emb_scale
-
+        # print("T5 inputshape:",inp_emb.shape,input_attn.shape) # after embedding the shape becomes([5, 232, 768]) (batchsize,tokenziedlength,embeddinglength)
         out = self.model(inputs_embeds = inp_emb, attention_mask = input_attn, labels = target_ids, decoder_attention_mask = target_attn, return_dict=True)
 
         return out
@@ -82,13 +82,14 @@ class T5(nn.Module):
         
         # target_sequence_length of the model
         target_sequence_length = target_ids.shape[1]
-
+        # print("getlossvec,loss input",input_ids.shape,target_ids.shape)
         logits = (self(input_ids, input_attn, target_ids = target_ids, target_attn = target_attn)).logits
-
+        # print("getlossvec,logits",logits.shape)
         loss_vec = self._criterion(logits.view(-1, logits.size(-1)), target_ids.view(-1))
-
+        # print("getlossvec,loss_vec",loss_vec.shape)
         loss_vec = loss_vec.view(batch_size, -1).mean(dim = 1)
 
+        # print("getlossvec,loss_vec",loss_vec.shape)
         return loss_vec
 
     # used for generation of summaries from articles

@@ -23,10 +23,11 @@ seed_torch(seed_)
 def CTG_loss(input_ids, input_attn, target_ids, target_attn, attn_idx, attention_parameters, model):
     
     attention_weights = attention_parameters(attn_idx)
-    
+    # print(attention_weights)
     # similar to the loss defined in the BART model hugging face conditional text generation
     
     # probability predictions
+    # print("CTG loss shape,",input_ids.shape, input_attn.shape,target_ids.shape, target_attn.shape)
     loss_vec = model.get_loss_vec(input_ids, input_attn, target_ids = target_ids, target_attn = target_attn)
     
     loss = torch.dot(attention_weights, loss_vec)
@@ -36,76 +37,30 @@ def CTG_loss(input_ids, input_attn, target_ids, target_attn, attn_idx, attention
     return scaling_factor*loss
 
 
+# normal loss
+def my_loss(input_ids, input_attn, target_ids, target_attn, model):
+    
+    
+    # print("CTG loss shape,",input_ids.shape, input_attn.shape,target_ids.shape, target_attn.shape)
+    loss_vec = model.get_loss_vec(input_ids, input_attn, target_ids = target_ids, target_attn = target_attn)
+    loss = torch.sum(loss_vec,dim=0)
+    
+    return loss
+
+
 # for the calculation of classification loss on the augmented dataset
 # define calc_loss_aug
 
 def calc_loss_aug(input_ids, input_attn, w_model, v_model):
 
-    #######################################################################################################
-    ### GPT convert
-    # convert input to the bart encodings
-    # # use the generate approach
-    output_ids = w_model.generate(input_ids[:,:15])
+    # print("aug_loss")
+    output_ids = w_model.generate(input_ids)
     
-    gpt_logits = w_model(gpt_summary_ids, torch.ones_like(gpt_summary_ids).long(), target_ids = gpt_summary_ids , target_attn = torch.ones_like(gpt_summary_ids).long()).logits
-
-    # find the decoded vector from probabilities
-    
-    gpt_soft_idx, gpt_idx = torch.max(gpt_logits, dim=-1, keepdims= True)
-
-    #######################################################################################################
-    
-    # convert to the bart ids
-    
-    gpt2bart_summary_ids, gpt2bart_summary_attn = tokenize(gpt_model.tokenizer.batch_decode(gpt_summary_ids), bart_model.tokenizer, max_length = summary_length)
-    
-    gpt2bart_summary_ids, gpt2bart_summary_attn = gpt2bart_summary_ids.cuda(), gpt2bart_summary_attn.cuda()
-
-    #######################################################################################################
-
-    ## BART model articles generation
-    
-    # the gumbel soft max trick
-    
-    one_hot = torch.zeros(gpt2bart_summary_ids.shape[0], gpt2bart_summary_ids.shape[1], bart_model.vocab_size).cuda()
-    
-    bart_summary_ids = one_hot.scatter_(-1, gpt2bart_summary_ids.unsqueeze(-1), 1.).float().detach() + gpt_soft_idx.sum() - gpt_soft_idx.sum().detach()
-
-    # BART
-    bart_article_ids = bart_model.generate(gpt2bart_summary_ids)
-    
-    bart_logits = bart_model(bart_summary_ids, gpt2bart_summary_attn, target_ids = bart_article_ids, target_attn = torch.ones_like(bart_article_ids).long()).logits
-
-    # find the decoded vector from probabilities
-    
-    bart_soft_idx, bart_idx = torch.max(bart_logits, dim=-1, keepdims= True)
-
-    #######################################################################################################
-
-    # convert to the DS ids
-
-    bart2DS_article_ids, bart2DS_article_attn = tokenize(bart_model.tokenizer.batch_decode(bart_article_ids), DS_model.tokenizer, max_length = article_length)
-    
-    bart2DS_article_ids, bart2DS_article_attn = bart2DS_article_ids.cuda(), bart2DS_article_attn.cuda()
-    
-    bart2DS_summary_ids, bart2DS_summary_attn = tokenize(bart_model.tokenizer.batch_decode(gpt2bart_summary_ids), DS_model.tokenizer, max_length = summary_length)
-    
-    bart2DS_summary_ids, bart2DS_summary_attn = bart2DS_summary_ids.cuda(), bart2DS_summary_attn.cuda()
-
-    #######################################################################################################
-    
-    # DS model
-
-    one_hot = torch.zeros(bart2DS_article_ids.shape[0], bart2DS_article_ids.shape[1], DS_model.vocab_size).cuda()
-    
-    DS_article_ids = one_hot.scatter_(-1, bart2DS_article_ids.unsqueeze(-1), 1.).float().detach() + bart_soft_idx.sum() - bart_soft_idx.sum().detach()    
-    
-    DS_summary_ids = bart2DS_summary_ids
-    
-    loss = DS_model(DS_article_ids, bart2DS_article_attn, target_ids = DS_summary_ids, target_attn = bart2DS_summary_attn).loss
-        
-    del DS_article_ids, bart_summary_ids, one_hot
-        
-    gc.collect()   
-    
+    # print("input_ids",input_ids.shape)
+    # print("input_attn",input_attn.shape)
+    # print("output_ids",output_ids.shape)
+    # print("torch.ones_like(output_ids).long()",torch.ones_like(output_ids).long().shape)
+    loss = v_model.get_loss_vec(input_ids, input_attn, target_ids = output_ids, target_attn = torch.ones_like(output_ids).long())
+    loss = torch.sum(loss,dim=0)
+    print("loss",loss.shape)
     return loss
