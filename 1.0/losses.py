@@ -53,14 +53,21 @@ def my_loss(input_ids, input_attn, target_ids, target_attn, model):
 
 def calc_loss_aug(input_ids, input_attn, w_model, v_model):
 
-    # print("aug_loss")
+    print("aug_loss")
+    print("input_ids.shape",input_ids.shape)
     output_ids = w_model.generate(input_ids)
+    print("output_ids.shape",output_ids.shape)
+    w_logits = w_model(input_ids, input_attn, target_ids = output_ids, target_attn = torch.ones_like(output_ids).long()).logits
+    print("w_logits",w_logits.shape)
+    # find the decoded vector from probabilities
     
+    w_soft_idx, bart_idx = torch.max(w_logits, dim=-1, keepdims= True)
+    print("w_soft_idx",w_soft_idx)
     # print("input_ids",input_ids.shape)
     # print("input_attn",input_attn.shape)
     # print("output_ids",output_ids.shape)
     # print("torch.ones_like(output_ids).long()",torch.ones_like(output_ids).long().shape)
     loss = v_model.get_loss_vec(input_ids, input_attn, target_ids = output_ids, target_attn = torch.ones_like(output_ids).long())
     loss = torch.sum(loss,dim=0)
-    print("loss",loss.shape)
+    # print("loss",loss.shape)
     return loss
