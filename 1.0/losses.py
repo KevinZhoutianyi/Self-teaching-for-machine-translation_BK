@@ -53,21 +53,23 @@ def my_loss(input_ids, input_attn, target_ids, target_attn, model):
 
 def calc_loss_aug(input_ids, input_attn, w_model, v_model):
 
-    print("aug_loss")
-    print("input_ids.shape",input_ids.shape)
+    print("input_ids",input_ids.shape)
     output_ids = w_model.generate(input_ids)
-    print("output_ids.shape",output_ids.shape)
+    print("output_ids",output_ids.shape)
+    # print("output_ids",output_ids)
     w_logits = w_model(input_ids, input_attn, target_ids = output_ids, target_attn = torch.ones_like(output_ids).long()).logits
     print("w_logits",w_logits.shape)
-    # find the decoded vector from probabilities
-    
     w_soft_idx, bart_idx = torch.max(w_logits, dim=-1, keepdims= True)
-    print("w_soft_idx",w_soft_idx)
-    # print("input_ids",input_ids.shape)
-    # print("input_attn",input_attn.shape)
-    # print("output_ids",output_ids.shape)
-    # print("torch.ones_like(output_ids).long()",torch.ones_like(output_ids).long().shape)
-    loss = v_model.get_loss_vec(input_ids, input_attn, target_ids = output_ids, target_attn = torch.ones_like(output_ids).long())
+
+    
+    print("w_soft_idx",w_soft_idx.shape)
+    one_hot = torch.zeros(input_ids.shape[0], input_ids.shape[1], v_model.vocab_size).cuda()
+    print("one_hot",one_hot.shape)
+    w_output_ids = one_hot.scatter_(-1, output_ids.unsqueeze(-1), 1.).float().detach() + w_soft_idx.sum() - w_soft_idx.sum().detach()
+    print("w_output_ids",w_output_ids.shape)
+    # w_output_ids = w_output_ids.long()
+    loss = v_model.loss( w_output_ids,  torch.ones_like(input_ids).long(), target_ids = input_ids, target_attn = input_attn)
+    #here  w_output_ids is a catagory distribution, input_ids are index
     loss = torch.sum(loss,dim=0)
     # print("loss",loss.shape)
     return loss

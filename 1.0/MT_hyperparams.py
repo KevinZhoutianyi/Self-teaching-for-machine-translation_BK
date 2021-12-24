@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 
-seed_ = 1024
+seed_ = 2
 
 summary_length = 100
 

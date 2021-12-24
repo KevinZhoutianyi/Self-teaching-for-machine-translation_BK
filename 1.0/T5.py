@@ -24,7 +24,7 @@ class Embedding_(torch.nn.Module):
     def __init__(self, embedding_layer):
         super(Embedding_, self).__init__()
         self.embedding = embedding_layer.cuda()
-
+#https://github.com/huggingface/transformers/issues/4875
     def forward(self, mask):
         if mask.ndim == 2:
             assert mask.dtype == torch.long
@@ -32,7 +32,8 @@ class Embedding_(torch.nn.Module):
         
         assert mask.dtype == torch.float
         # here the mask is the one-hot encoding
-        return torch.matmul(mask, self.embedding.weight)
+        print("embedding shape",self.embedding.weight[:32100,:].shape)
+        return torch.matmul(mask, self.embedding.weight[:32100,:])
 
 
 class T5(nn.Module):
@@ -62,45 +63,58 @@ class T5(nn.Module):
         self.enc_emb_scale = 1
 
     def forward(self, input_ids, input_attn, target_ids = None, target_attn = None):
-
+        print('start of forward')
         inp_emb = self.embedding(input_ids)/self.enc_emb_scale
-        # print("T5 inputshape:",inp_emb.shape,input_attn.shape) # after embedding the shape becomes([5, 232, 768]) (batchsize,tokenziedlength,embeddinglength)
+        print("T5 inputshape:",inp_emb.shape,input_attn.shape) # after embedding the shape becomes([5, 232, 768]) (batchsize,tokenziedlength,embeddinglength)
         out = self.model(inputs_embeds = inp_emb, attention_mask = input_attn, labels = target_ids, decoder_attention_mask = target_attn, return_dict=True)
 
+        print('end of forward')
         return out
     
     def loss(self, input_ids, input_attn, target_ids, target_attn):
 
-        output = self(input_ids, input_attn, target_ids, target_attn)
-
-        return output.logits, output.loss
+        logits = (self(input_ids, input_attn, target_ids = target_ids, target_attn = target_attn)).logits
+      
+        loss = self._criterion(logits.view(-1, logits.size(-1)), target_ids.view(-1))
+        print("logits",logits.view(-1, logits.size(-1)).shape,"tar",target_ids.view(-1).shape)
+        print("T5 loss", loss.shape)
+        return loss
 
     def get_loss_vec(self, input_ids, input_attn, target_ids = None, target_attn = None):
 
         # batch size
+        print("start of : get_loss_vec")
         batch_size = target_ids.shape[0]
         
         # target_sequence_length of the model
         target_sequence_length = target_ids.shape[1]
         # print("getlossvec,loss input",input_ids.shape,target_ids.shape)
         logits = (self(input_ids, input_attn, target_ids = target_ids, target_attn = target_attn)).logits
-        # print("getlossvec,logits",logits.shape)
+        # print("17.17",logits.shape,target_ids.shape) #17.17 torch.Size([2, 100, 32128]) torch.Size([2, 100])
+        
+        
+
+        # torch.save(logits,"./logits.pt")
+        # torch.save(target_ids,"./target_ids.pt")
         loss_vec = self._criterion(logits.view(-1, logits.size(-1)), target_ids.view(-1))
         # print("getlossvec,loss_vec",loss_vec.shape)
         loss_vec = loss_vec.view(batch_size, -1).mean(dim = 1)
 
         # print("getlossvec,loss_vec",loss_vec.shape)
+        print("end of : get_loss_vec")
         return loss_vec
 
     # used for generation of summaries from articles
     def generate(self, input_ids, num_beams = 2, max_length=article_length):
         
         # beam search
+        print("start of : generate")
         output_ids = self.model.generate( input_ids = input_ids, num_beams = num_beams, early_stopping = True, max_length = max_length, no_repeat_ngram_size = 2, repetition_penalty = 1.2)
         
         ## sampling with top_p
         #summary_ids = self.model.generate( input_ids = input_ids, num_beams = 1, max_length = max_length, top_p = 0.95, top_k = 50, no_repeat_ngram_size = 2, repetition_penalty = 1.2)
 
+        print("end of : generate")
         return output_ids
 
     # new model for the definitions of gradients in architec.py 
