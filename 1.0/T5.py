@@ -24,7 +24,7 @@ class Embedding_(torch.nn.Module):
     def __init__(self, embedding_layer):
         super(Embedding_, self).__init__()
         self.embedding = embedding_layer.cuda()
-#https://github.com/huggingface/transformers/issues/4875
+        #https://github.com/huggingface/transformers/issues/4875
     def forward(self, mask):
         if mask.ndim == 2:
             assert mask.dtype == torch.long
@@ -38,10 +38,9 @@ class Embedding_(torch.nn.Module):
 
 class T5(nn.Module):
     
-    def __init__(self, criterion, tokenizer, MODEL = 't5-base'):
+    def __init__(self, criterion, tokenizer,name='unknown', MODEL = 't5-base'):
         super(T5, self).__init__()
-
-
+        self.name = name
         self.tokenizer = tokenizer
         self.vocab_size = tokenizer.vocab_size
         self.pad_token_id = tokenizer.pad_token_id
