@@ -150,7 +150,7 @@ class Architect(object):
 
         unrolled_v_model = self._compute_unrolled_v_model(v_input, v_input_attn,  unrolled_w_model,  eta_v, v_optimizer)
 
-        _, unrolled_v_loss = unrolled_v_model.loss( valid_input_v, valid_input_v_attn,  valid_out_v, valid_out_v_attn)
+        unrolled_v_loss = unrolled_v_model( valid_input_v, valid_input_v_attn,  valid_out_v, valid_out_v_attn).loss
 
         unrolled_v_model.train()
 
@@ -199,7 +199,7 @@ class Architect(object):
         # change to .parameters()
         grads_n = torch.autograd.grad(loss, self.A.parameters())
 
-        for p, v in zip(self.w_model.gpt_model.parameters(), vector):
+        for p, v in zip(self.w_model.parameters(), vector):
             p.data.add_(R, v)
 
         return [(x-y).div_(2*R) for x, y in zip(grads_p, grads_n)]
@@ -236,7 +236,7 @@ class Architect(object):
 
         grad_part2 = self._hessian_vector_product_A(vector_dash, w_input, w_target, w_input_attn, w_target_attn , attn_idx)
 
-        for p, v in zip(self.DS_model.parameters(), vector_s_dash):
+        for p, v in zip(self.v_model.parameters(), vector_s_dash):
             p.data.add_(R1, v)
 
         grad = [(x-y).div_((2*R1)/(eta_w*eta_v)) for x, y in zip(grad_part1, grad_part2)]

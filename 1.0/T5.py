@@ -72,7 +72,7 @@ class T5(nn.Module):
         return out
     
     def loss(self, input_ids, input_attn, target_ids, target_attn):
-
+        # input is distribution , output is just category index
         logits = (self(input_ids, input_attn, target_ids = target_ids, target_attn = target_attn)).logits
       
         loss = self._criterion(logits.view(-1, logits.size(-1)), target_ids.view(-1))

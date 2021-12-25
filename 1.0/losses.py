@@ -6,7 +6,6 @@ import numpy as np
 import torch.nn as nn
 from torch.autograd import Variable
 from utils import *
-from hyperparams import *
 
 def seed_torch(seed=0):
     random.seed(seed)
