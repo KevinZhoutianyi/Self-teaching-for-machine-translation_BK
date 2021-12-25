@@ -141,7 +141,7 @@ class Architect(object):
         self.optimizer_A.zero_grad()
 
         # self.optimizer_B.zero_grad()
-        # print("architec shape:",w_input.shape, w_target.shape, w_input_attn.shape, w_target_attn.shape, attn_idx.shape)
+        # # print("architec shape:",w_input.shape, w_target.shape, w_input_attn.shape, w_target_attn.shape, attn_idx.shape)
         unrolled_w_model = self._compute_unrolled_w_model(w_input, w_target, w_input_attn, w_target_attn, attn_idx, eta_w, w_optimizer)
 
         unrolled_w_model.train()
@@ -243,4 +243,4 @@ class Architect(object):
 
         return grad
 
-# print("123")
+# # print("123")

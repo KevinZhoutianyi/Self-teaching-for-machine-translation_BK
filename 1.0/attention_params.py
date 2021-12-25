@@ -21,7 +21,7 @@ class attention_params(torch.nn.Module):# A and B
         self.softmax = torch.nn.Softmax(dim=-1)
         
     def forward(self, idx):
-        # print(self.alpha)
+        # # print(self.alpha)
         probs = self.softmax(self.alpha)
-        # print(probs)
+        # # print(probs)
         return probs[idx]

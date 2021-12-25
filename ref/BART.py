@@ -51,11 +51,11 @@ class BART(nn.Module):
         # BART model definition with encoder and the decoder
         self.bart_model = BartForConditionalGeneration.from_pretrained(MODEL)
         
-        # print('Loading the pretrained model ....')
+        # # print('Loading the pretrained model ....')
         # Load the pre-trained model trained for 
         self.bart_model.load_state_dict(torch.load('pretrained_BART.pt'))
         
-        # print('Done! Loaded the pretrained model ....')
+        # # print('Done! Loaded the pretrained model ....')
         
         self.encoder = self.bart_model.model.encoder
         self.decoder = self.bart_model.model.decoder
@@ -123,13 +123,13 @@ class BART(nn.Module):
 
 if __name__ == "__main__":
     from transformers import BartTokenizer
-    print("bart main")
+    # print("bart main")
     bart_tokenizer = BartTokenizer.from_pretrained('facebook/bart-base')
     bart_criterion = torch.nn.CrossEntropyLoss(ignore_index = bart_tokenizer.pad_token_id, reduction='none')
     bart_criterion = bart_criterion.cuda()
     bart = BART(bart_criterion,bart_tokenizer)
     bart = bart.cuda()
-    print(bart)
+    # print(bart)
 
-    print(bart_tokenizer("hi im kevin"))
+    # print(bart_tokenizer("hi im kevin"))
     bart_tokenizer.decode([0, 3592, 4356, 7321, 6320, 2])

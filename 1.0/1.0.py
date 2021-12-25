@@ -24,8 +24,8 @@ from architect import *
 
 # %%
 dataset = load_dataset('opus_euconst','en-fr')
-print(dataset)
-print(dataset['train'][5])
+# print(dataset)
+# print(dataset['train'][5])
 
 # %%
 # Setting the seeds
@@ -63,10 +63,10 @@ preprocess(valid)
 preprocess(test)
 
 # %%
-print("train len:",len(train))
-print("valid len:",len(valid))
-print("test len:" ,len(test))
-print(train[5])
+# print("train len:",len(train))
+# print("valid len:",len(valid))
+# print("test len:" ,len(test))
+# print(train[5])
 type(train)
 
 # %%
@@ -129,7 +129,7 @@ def my_test(test_dataloader,model):
         y_attn = Variable(batch[3], requires_grad=False).cuda()
 
         ls = my_loss(x,x_attn,y,y_attn,model)
-        print('\n test loss :',ls)
+        # print('\n test loss :',ls)
         break
         
 
@@ -137,7 +137,7 @@ def my_test(test_dataloader,model):
 def my_train(epoch, train_dataloader, valid_dataloader, w_model, v_model, architect, A, w_optimizer, v_optimizer, lr_w, lr_v, ):
     for step, batch in enumerate(train_dataloader):
         # for index,t in enumerate(batch):
-        #     print("Training data ",index,"'s shape ",t.shape,end=' ')
+        #     # print("Training data ",index,"'s shape ",t.shape,end=' ')
         batch_loss_w, batch_loss_v,  batch_count = 0, 0, 0
         input_w = Variable(batch[0], requires_grad=False).cuda()
         input_w_attn = Variable(batch[1], requires_grad=False).cuda()
@@ -183,7 +183,7 @@ def my_train(epoch, train_dataloader, valid_dataloader, w_model, v_model, archit
             nn.utils.clip_grad_norm(w_model.parameters(), grad_clip)
             
             w_optimizer.step()
-            # print(w_optimizer)
+            # # print(w_optimizer)
             
             ######################################################################
             # Update the V model
@@ -236,7 +236,7 @@ torch.cuda.empty_cache()
 # %%
 tokenizer.decode([0,  6206,  6667,    27,     1])
 tokenizer.decode([13959,  1566,    12,  2379,    10, 17608,   994,    27,     1,     0])
-print(model_v.vocab_size)
+# print(model_v.vocab_size)
 logit = torch.load('logits.pt')
 target = torch.load('target_ids.pt')
 tokenizer.decode(target[0])
