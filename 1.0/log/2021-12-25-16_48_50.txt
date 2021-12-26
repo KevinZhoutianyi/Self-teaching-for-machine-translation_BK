@@ -1,0 +1,159 @@
+2021-12-25 16:48:51,658 |	  Reusing dataset opus_euconst (/home/li/.cache/huggingface/datasets/opus_euconst/en-fr/1.0.0/d1e611a011f28fdda67a97024820e0a3813b4e4decca194d9a20b3207a39b908)
+2021-12-25 16:48:51,696 |	  DatasetDict({
+    train: Dataset({
+        features: ['translation'],
+        num_rows: 10104
+    })
+})
+2021-12-25 16:48:51,697 |	  {'translation': {'en': 'CONSIDERING that Article IV-437(2)(e) of the Constitution provides that the Treaty of 16 April 2003 concerning the accessions referred to above shall be repealed;  ', 'fr': "CONSIDÉRANT que l'article\xa0IV-437, paragraphe\xa02, point\xa0e), de la Constitution prévoit l'abrogation du traité du 16\xa0avril 2003 relatif aux adhésions visées ci-dessus;  "}}
+2021-12-25 16:48:54,473 |	  Loading cached shuffled indices for dataset at /home/li/.cache/huggingface/datasets/opus_euconst/en-fr/1.0.0/d1e611a011f28fdda67a97024820e0a3813b4e4decca194d9a20b3207a39b908/cache-774986f0005795ce.arrow
+2021-12-25 16:48:54,931 |	  train len: 7578
+2021-12-25 16:48:54,932 |	  valid len: 1263
+2021-12-25 16:48:54,934 |	  test len: 1263
+2021-12-25 16:48:54,934 |	  {'en': 'translate English to French:, on the basis of Article\xa02, and shall report thereon at least once a year.  ', 'fr': "L'Agence européenne de défense contribue à l'évaluation régulière des contributions des États membres participants en matière de capacités, en particulier des contributions fournies suivant les critères qui seront établis, entre autres, sur la base de l'article\xa02, et en fait rapport au moins une fois par an.  "}
+2021-12-25 16:49:11,242 |	  Step count: 0
+2021-12-25 16:49:29,980 |	  loss_w:4.171595719526522e-05
+2021-12-25 16:49:32,899 |	  v_loss:333.8587341308594
+2021-12-25 16:49:33,253 |	  model_w_in_main test loss : 0.837808
+2021-12-25 16:49:33,316 |	  model_v_in_main test loss : 0.854771
+2021-12-25 16:49:33,319 |	  Step count: 1
+2021-12-25 16:49:44,503 |	  loss_w:6.25593020231463e-05
+2021-12-25 16:49:45,595 |	  v_loss:95.31224060058594
+2021-12-25 16:49:45,939 |	  model_w_in_main test loss : 0.837774
+2021-12-25 16:49:46,001 |	  model_v_in_main test loss : 0.906656
+2021-12-25 16:49:46,003 |	  Step count: 2
+2021-12-25 16:50:03,740 |	  loss_w:1.3901259990234394e-05
+2021-12-25 16:50:06,664 |	  v_loss:276.99713134765625
+2021-12-25 16:50:07,039 |	  model_w_in_main test loss : 0.837824
+2021-12-25 16:50:07,108 |	  model_v_in_main test loss : 0.956657
+2021-12-25 16:50:07,111 |	  Step count: 3
+2021-12-25 16:50:18,772 |	  loss_w:1.442124539607903e-05
+2021-12-25 16:50:19,233 |	  v_loss:91.6539535522461
+2021-12-25 16:50:19,600 |	  model_w_in_main test loss : 0.837875
+2021-12-25 16:50:19,667 |	  model_v_in_main test loss : 0.995619
+2021-12-25 16:50:19,670 |	  Step count: 4
+2021-12-25 16:50:31,572 |	  loss_w:1.9103058548353147e-06
+2021-12-25 16:50:32,145 |	  v_loss:106.21476745605469
+2021-12-25 16:50:32,523 |	  model_w_in_main test loss : 0.837784
+2021-12-25 16:50:32,592 |	  model_v_in_main test loss : 1.091140
+2021-12-25 16:50:32,595 |	  Step count: 5
+2021-12-25 16:50:46,236 |	  loss_w:7.358301081694663e-05
+2021-12-25 16:50:47,307 |	  v_loss:192.77206420898438
+2021-12-25 16:50:47,700 |	  model_w_in_main test loss : 0.837769
+2021-12-25 16:50:47,774 |	  model_v_in_main test loss : 1.012754
+2021-12-25 16:50:47,778 |	  Step count: 6
+2021-12-25 16:50:59,389 |	  loss_w:7.787284994265065e-05
+2021-12-25 16:50:59,917 |	  v_loss:106.10401916503906
+2021-12-25 16:51:00,303 |	  model_w_in_main test loss : 0.837816
+2021-12-25 16:51:00,374 |	  model_v_in_main test loss : 1.027948
+2021-12-25 16:51:00,377 |	  Step count: 7
+2021-12-25 16:51:12,133 |	  loss_w:3.6602336876967456e-06
+2021-12-25 16:51:12,948 |	  v_loss:132.31700134277344
+2021-12-25 16:51:13,300 |	  model_w_in_main test loss : 0.837726
+2021-12-25 16:51:13,372 |	  model_v_in_main test loss : 1.024889
+2021-12-25 16:51:13,375 |	  Step count: 8
+2021-12-25 16:51:24,039 |	  loss_w:2.8220489184604958e-05
+2021-12-25 16:51:24,608 |	  v_loss:65.02796936035156
+2021-12-25 16:51:24,997 |	  model_w_in_main test loss : 0.837774
+2021-12-25 16:51:25,067 |	  model_v_in_main test loss : 1.036427
+2021-12-25 16:51:25,070 |	  Step count: 9
+2021-12-25 16:51:44,917 |	  loss_w:8.900185093807522e-06
+2021-12-25 16:51:47,776 |	  v_loss:225.534912109375
+2021-12-25 16:51:48,138 |	  model_w_in_main test loss : 0.837691
+2021-12-25 16:51:48,202 |	  model_v_in_main test loss : 1.048990
+2021-12-25 16:51:48,205 |	  Step count: 10
+2021-12-25 16:51:58,562 |	  loss_w:3.0184248316800222e-05
+2021-12-25 16:51:59,066 |	  v_loss:59.685813903808594
+2021-12-25 16:51:59,430 |	  model_w_in_main test loss : 0.837785
+2021-12-25 16:51:59,504 |	  model_v_in_main test loss : 1.097561
+2021-12-25 16:51:59,508 |	  Step count: 11
+2021-12-25 16:52:13,893 |	  loss_w:1.4965588889026549e-05
+2021-12-25 16:52:15,828 |	  v_loss:162.43753051757812
+2021-12-25 16:52:16,213 |	  model_w_in_main test loss : 0.837804
+2021-12-25 16:52:16,282 |	  model_v_in_main test loss : 1.063259
+2021-12-25 16:52:16,285 |	  Step count: 12
+2021-12-25 16:52:29,962 |	  loss_w:8.571769285481423e-06
+2021-12-25 16:52:31,530 |	  v_loss:82.7989501953125
+2021-12-25 16:52:31,901 |	  model_w_in_main test loss : 0.837742
+2021-12-25 16:52:31,967 |	  model_v_in_main test loss : 1.038463
+2021-12-25 16:52:31,970 |	  Step count: 13
+2021-12-25 16:52:49,798 |	  loss_w:8.700479520484805e-05
+2021-12-25 16:52:52,517 |	  v_loss:168.3236083984375
+2021-12-25 16:52:52,851 |	  model_w_in_main test loss : 0.837766
+2021-12-25 16:52:52,922 |	  model_v_in_main test loss : 1.065776
+2021-12-25 16:52:52,925 |	  Step count: 14
+2021-12-25 16:53:04,680 |	  loss_w:1.6118392522912472e-05
+2021-12-25 16:53:05,480 |	  v_loss:34.08367156982422
+2021-12-25 16:53:05,774 |	  model_w_in_main test loss : 0.837796
+2021-12-25 16:53:05,838 |	  model_v_in_main test loss : 1.083238
+2021-12-25 16:53:05,841 |	  Step count: 15
+2021-12-25 16:53:17,708 |	  loss_w:6.536582532135071e-06
+2021-12-25 16:53:19,021 |	  v_loss:29.466262817382812
+2021-12-25 16:53:19,394 |	  model_w_in_main test loss : 0.837788
+2021-12-25 16:53:19,464 |	  model_v_in_main test loss : 1.085058
+2021-12-25 16:53:19,467 |	  Step count: 16
+2021-12-25 16:53:32,346 |	  loss_w:2.7817961381515488e-05
+2021-12-25 16:53:33,144 |	  v_loss:83.37116241455078
+2021-12-25 16:53:33,482 |	  model_w_in_main test loss : 0.837746
+2021-12-25 16:53:33,539 |	  model_v_in_main test loss : 1.084229
+2021-12-25 16:53:33,541 |	  Step count: 17
+2021-12-25 16:54:10,594 |	  loss_w:5.8568307395034935e-06
+2021-12-25 16:54:12,447 |	  v_loss:181.01121520996094
+2021-12-25 16:54:12,808 |	  model_w_in_main test loss : 0.837736
+2021-12-25 16:54:12,873 |	  model_v_in_main test loss : 1.121885
+2021-12-25 16:54:12,876 |	  Step count: 18
+2021-12-25 16:54:28,316 |	  loss_w:1.7257073068321915e-06
+2021-12-25 16:54:29,781 |	  v_loss:83.90719604492188
+2021-12-25 16:54:30,130 |	  model_w_in_main test loss : 0.837838
+2021-12-25 16:54:30,190 |	  model_v_in_main test loss : 1.103355
+2021-12-25 16:54:30,193 |	  Step count: 19
+2021-12-25 16:54:46,214 |	  loss_w:1.9712444554897957e-05
+2021-12-25 16:54:48,006 |	  v_loss:132.03466796875
+2021-12-25 16:54:48,336 |	  model_w_in_main test loss : 0.837835
+2021-12-25 16:54:48,397 |	  model_v_in_main test loss : 1.117382
+2021-12-25 16:54:48,400 |	  Step count: 20
+2021-12-25 16:55:03,608 |	  loss_w:4.285488466848619e-05
+2021-12-25 16:55:05,094 |	  v_loss:77.56834411621094
+2021-12-25 16:55:05,444 |	  model_w_in_main test loss : 0.837739
+2021-12-25 16:55:05,504 |	  model_v_in_main test loss : 1.120225
+2021-12-25 16:55:05,507 |	  Step count: 21
+2021-12-25 16:55:17,704 |	  loss_w:4.162164987064898e-05
+2021-12-25 16:55:18,982 |	  v_loss:24.574207305908203
+2021-12-25 16:55:19,310 |	  model_w_in_main test loss : 0.837832
+2021-12-25 16:55:19,371 |	  model_v_in_main test loss : 1.083741
+2021-12-25 16:55:19,373 |	  Step count: 22
+2021-12-25 16:55:30,147 |	  loss_w:1.439241827938531e-06
+2021-12-25 16:55:30,737 |	  v_loss:17.70018196105957
+2021-12-25 16:55:31,089 |	  model_w_in_main test loss : 0.837861
+2021-12-25 16:55:31,159 |	  model_v_in_main test loss : 1.101228
+2021-12-25 16:55:31,162 |	  Step count: 23
+2021-12-25 16:55:45,513 |	  loss_w:0.00010552599269431084
+2021-12-25 16:55:47,124 |	  v_loss:72.64339447021484
+2021-12-25 16:55:47,472 |	  model_w_in_main test loss : 0.837713
+2021-12-25 16:55:47,536 |	  model_v_in_main test loss : 1.060241
+2021-12-25 16:55:47,538 |	  Step count: 24
+2021-12-25 16:55:58,811 |	  loss_w:1.6616028233329416e-06
+2021-12-25 16:55:59,461 |	  v_loss:29.002439498901367
+2021-12-25 16:55:59,870 |	  model_w_in_main test loss : 0.837773
+2021-12-25 16:55:59,942 |	  model_v_in_main test loss : 1.228940
+2021-12-25 16:55:59,945 |	  Step count: 25
+2021-12-25 16:56:16,317 |	  loss_w:6.714624032611027e-05
+2021-12-25 16:56:18,241 |	  v_loss:95.95005798339844
+2021-12-25 16:56:18,633 |	  model_w_in_main test loss : 0.837820
+2021-12-25 16:56:18,707 |	  model_v_in_main test loss : 1.221508
+2021-12-25 16:56:18,711 |	  Step count: 26
+2021-12-25 16:56:31,345 |	  loss_w:1.1755657851608703e-06
+2021-12-25 16:56:32,241 |	  v_loss:23.57349395751953
+2021-12-25 16:56:32,618 |	  model_w_in_main test loss : 0.837785
+2021-12-25 16:56:32,688 |	  model_v_in_main test loss : 1.159039
+2021-12-25 16:56:32,691 |	  Step count: 27
+2021-12-25 16:56:43,636 |	  loss_w:0.00010528333223192021
+2021-12-25 16:56:44,159 |	  v_loss:17.48668098449707
+2021-12-25 16:56:44,539 |	  model_w_in_main test loss : 0.837722
+2021-12-25 16:56:44,608 |	  model_v_in_main test loss : 1.268247
+2021-12-25 16:56:44,612 |	  Step count: 28
+2021-12-25 16:57:00,667 |	  loss_w:2.109583692799788e-05
+2021-12-25 16:57:02,972 |	  v_loss:127.23078155517578
+2021-12-25 16:57:03,368 |	  model_w_in_main test loss : 0.837856
+2021-12-25 16:57:03,459 |	  model_v_in_main test loss : 1.285050
+2021-12-25 16:57:03,463 |	  Step count: 29

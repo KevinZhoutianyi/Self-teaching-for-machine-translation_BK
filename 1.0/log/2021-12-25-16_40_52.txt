@@ -1,0 +1,32 @@
+2021-12-25 16:40:53,010 |	  Reusing dataset opus_euconst (/home/li/.cache/huggingface/datasets/opus_euconst/en-fr/1.0.0/d1e611a011f28fdda67a97024820e0a3813b4e4decca194d9a20b3207a39b908)
+2021-12-25 16:40:53,047 |	  DatasetDict({
+    train: Dataset({
+        features: ['translation'],
+        num_rows: 10104
+    })
+})
+2021-12-25 16:40:53,049 |	  {'translation': {'en': 'CONSIDERING that Article IV-437(2)(e) of the Constitution provides that the Treaty of 16 April 2003 concerning the accessions referred to above shall be repealed;  ', 'fr': "CONSIDÉRANT que l'article\xa0IV-437, paragraphe\xa02, point\xa0e), de la Constitution prévoit l'abrogation du traité du 16\xa0avril 2003 relatif aux adhésions visées ci-dessus;  "}}
+2021-12-25 16:40:58,722 |	  Loading cached shuffled indices for dataset at /home/li/.cache/huggingface/datasets/opus_euconst/en-fr/1.0.0/d1e611a011f28fdda67a97024820e0a3813b4e4decca194d9a20b3207a39b908/cache-774986f0005795ce.arrow
+2021-12-25 16:40:59,157 |	  train len: 7578
+2021-12-25 16:40:59,158 |	  valid len: 1263
+2021-12-25 16:40:59,159 |	  test len: 1263
+2021-12-25 16:40:59,160 |	  {'en': 'translate English to French:, on the basis of Article\xa02, and shall report thereon at least once a year.  ', 'fr': "L'Agence européenne de défense contribue à l'évaluation régulière des contributions des États membres participants en matière de capacités, en particulier des contributions fournies suivant les critères qui seront établis, entre autres, sur la base de l'article\xa02, et en fait rapport au moins une fois par an.  "}
+2021-12-25 16:41:17,614 |	  Step count: 0
+2021-12-25 16:41:40,861 |	  model_w_in_main test loss : 0.837808
+2021-12-25 16:41:40,928 |	  model_v_in_main test loss : 0.854771
+2021-12-25 16:41:40,931 |	  Step count: 1
+2021-12-25 16:42:09,090 |	  model_w_in_main test loss : 0.837774
+2021-12-25 16:42:09,160 |	  model_v_in_main test loss : 0.906656
+2021-12-25 16:42:09,163 |	  Step count: 2
+2021-12-25 16:42:31,685 |	  model_w_in_main test loss : 0.837824
+2021-12-25 16:42:31,751 |	  model_v_in_main test loss : 0.956657
+2021-12-25 16:42:31,754 |	  Step count: 3
+2021-12-25 16:42:44,099 |	  model_w_in_main test loss : 0.837875
+2021-12-25 16:42:44,161 |	  model_v_in_main test loss : 0.995619
+2021-12-25 16:42:44,164 |	  Step count: 4
+2021-12-25 16:42:56,694 |	  model_w_in_main test loss : 0.837784
+2021-12-25 16:42:56,782 |	  model_v_in_main test loss : 1.091140
+2021-12-25 16:42:56,786 |	  Step count: 5
+2021-12-25 16:43:11,959 |	  model_w_in_main test loss : 0.837769
+2021-12-25 16:43:12,026 |	  model_v_in_main test loss : 1.012754
+2021-12-25 16:43:12,028 |	  Step count: 6

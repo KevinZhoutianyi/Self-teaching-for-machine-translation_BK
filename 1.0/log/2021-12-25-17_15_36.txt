@@ -1,0 +1,167 @@
+2021-12-25 17:15:37,054 |	  Reusing dataset opus_euconst (/home/li/.cache/huggingface/datasets/opus_euconst/en-fr/1.0.0/d1e611a011f28fdda67a97024820e0a3813b4e4decca194d9a20b3207a39b908)
+2021-12-25 17:15:37,088 |	  DatasetDict({
+    train: Dataset({
+        features: ['translation'],
+        num_rows: 10104
+    })
+})
+2021-12-25 17:15:37,090 |	  {'translation': {'en': 'CONSIDERING that Article IV-437(2)(e) of the Constitution provides that the Treaty of 16 April 2003 concerning the accessions referred to above shall be repealed;  ', 'fr': "CONSIDÉRANT que l'article\xa0IV-437, paragraphe\xa02, point\xa0e), de la Constitution prévoit l'abrogation du traité du 16\xa0avril 2003 relatif aux adhésions visées ci-dessus;  "}}
+2021-12-25 17:15:39,897 |	  Loading cached shuffled indices for dataset at /home/li/.cache/huggingface/datasets/opus_euconst/en-fr/1.0.0/d1e611a011f28fdda67a97024820e0a3813b4e4decca194d9a20b3207a39b908/cache-774986f0005795ce.arrow
+2021-12-25 17:15:40,354 |	  train len: 7578
+2021-12-25 17:15:40,355 |	  valid len: 1263
+2021-12-25 17:15:40,356 |	  test len: 1263
+2021-12-25 17:15:40,357 |	  {'en': 'translate English to French:, on the basis of Article\xa02, and shall report thereon at least once a year.  ', 'fr': "L'Agence européenne de défense contribue à l'évaluation régulière des contributions des États membres participants en matière de capacités, en particulier des contributions fournies suivant les critères qui seront établis, entre autres, sur la base de l'article\xa02, et en fait rapport au moins une fois par an.  "}
+2021-12-25 17:15:56,681 |	  Step count: 0
+2021-12-25 17:16:14,874 |	  loss_w (train):3.4845939808292314e-05
+2021-12-25 17:16:17,731 |	  v_loss (train):333.8587341308594
+2021-12-25 17:16:18,106 |	  model_w_in_main test loss : 0.837824
+2021-12-25 17:16:18,173 |	  model_v_in_main test loss : 0.831462
+2021-12-25 17:16:18,176 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0099, -0.0099, -0.0099,  ..., -0.0099, -0.0099, -0.0099],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:16:18,178 |	  Step count: 1
+2021-12-25 17:16:27,813 |	  loss_w (train):6.766241131117567e-05
+2021-12-25 17:16:29,010 |	  v_loss (train):111.9421157836914
+2021-12-25 17:16:29,356 |	  model_w_in_main test loss : 0.837778
+2021-12-25 17:16:29,420 |	  model_v_in_main test loss : 0.868355
+2021-12-25 17:16:29,423 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0182, -0.0182, -0.0182,  ..., -0.0182, -0.0182, -0.0182],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:16:29,425 |	  Step count: 2
+2021-12-25 17:16:46,089 |	  loss_w (train):1.554307709739078e-05
+2021-12-25 17:16:49,060 |	  v_loss (train):263.779052734375
+2021-12-25 17:16:49,437 |	  model_w_in_main test loss : 0.837844
+2021-12-25 17:16:49,503 |	  model_v_in_main test loss : 0.852040
+2021-12-25 17:16:49,507 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0227, -0.0227, -0.0227,  ..., -0.0227, -0.0227, -0.0227],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:16:49,509 |	  Step count: 3
+2021-12-25 17:16:59,898 |	  loss_w (train):1.6379937733290717e-05
+2021-12-25 17:17:00,375 |	  v_loss (train):90.01312255859375
+2021-12-25 17:17:00,733 |	  model_w_in_main test loss : 0.837775
+2021-12-25 17:17:00,799 |	  model_v_in_main test loss : 0.853961
+2021-12-25 17:17:00,802 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0257, -0.0257, -0.0257,  ..., -0.0257, -0.0257, -0.0257],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:17:00,804 |	  Step count: 4
+2021-12-25 17:17:11,021 |	  loss_w (train):2.1330436084099347e-06
+2021-12-25 17:17:11,576 |	  v_loss (train):107.91200256347656
+2021-12-25 17:17:11,933 |	  model_w_in_main test loss : 0.837734
+2021-12-25 17:17:12,000 |	  model_v_in_main test loss : 0.878200
+2021-12-25 17:17:12,004 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0247, -0.0247, -0.0247,  ..., -0.0247, -0.0247, -0.0247],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:17:12,005 |	  Step count: 5
+2021-12-25 17:17:23,495 |	  loss_w (train):7.858308526920155e-05
+2021-12-25 17:17:24,456 |	  v_loss (train):158.43104553222656
+2021-12-25 17:17:24,772 |	  model_w_in_main test loss : 0.837713
+2021-12-25 17:17:24,829 |	  model_v_in_main test loss : 0.876339
+2021-12-25 17:17:24,832 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0259, -0.0259, -0.0259,  ..., -0.0259, -0.0259, -0.0259],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:17:24,833 |	  Step count: 6
+2021-12-25 17:17:34,226 |	  loss_w (train):8.64094981807284e-05
+2021-12-25 17:17:34,625 |	  v_loss (train):82.34506225585938
+2021-12-25 17:17:34,882 |	  model_w_in_main test loss : 0.837737
+2021-12-25 17:17:34,935 |	  model_v_in_main test loss : 0.880960
+2021-12-25 17:17:34,938 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0262, -0.0262, -0.0262,  ..., -0.0262, -0.0262, -0.0262],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:17:34,939 |	  Step count: 7
+2021-12-25 17:17:45,611 |	  loss_w (train):4.451858785614604e-06
+2021-12-25 17:17:46,445 |	  v_loss (train):143.1834259033203
+2021-12-25 17:17:46,823 |	  model_w_in_main test loss : 0.837820
+2021-12-25 17:17:46,891 |	  model_v_in_main test loss : 0.887228
+2021-12-25 17:17:46,895 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0264, -0.0264, -0.0264,  ..., -0.0264, -0.0264, -0.0264],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:17:46,897 |	  Step count: 8
+2021-12-25 17:17:56,317 |	  loss_w (train):2.421941280772444e-05
+2021-12-25 17:17:56,841 |	  v_loss (train):76.80359649658203
+2021-12-25 17:17:57,208 |	  model_w_in_main test loss : 0.837707
+2021-12-25 17:17:57,276 |	  model_v_in_main test loss : 0.871066
+2021-12-25 17:17:57,280 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0135, -0.0135, -0.0135,  ..., -0.0135, -0.0135, -0.0135],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:17:57,282 |	  Step count: 9
+2021-12-25 17:18:14,474 |	  loss_w (train):8.365855137526523e-06
+2021-12-25 17:18:17,154 |	  v_loss (train):198.57867431640625
+2021-12-25 17:18:17,507 |	  model_w_in_main test loss : 0.837758
+2021-12-25 17:18:17,568 |	  model_v_in_main test loss : 0.880966
+2021-12-25 17:18:17,571 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0065, -0.0065, -0.0065,  ..., -0.0065, -0.0065, -0.0065],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:18:17,572 |	  Step count: 10
+2021-12-25 17:18:27,160 |	  loss_w (train):3.635210305219516e-05
+2021-12-25 17:18:27,677 |	  v_loss (train):103.07505798339844
+2021-12-25 17:18:28,038 |	  model_w_in_main test loss : 0.837781
+2021-12-25 17:18:28,103 |	  model_v_in_main test loss : 0.901313
+2021-12-25 17:18:28,106 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0039, -0.0039, -0.0039,  ..., -0.0039, -0.0039, -0.0039],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:18:28,108 |	  Step count: 11
+2021-12-25 17:18:41,614 |	  loss_w (train):1.7604561435291544e-05
+2021-12-25 17:18:43,476 |	  v_loss (train):205.65298461914062
+2021-12-25 17:18:43,827 |	  model_w_in_main test loss : 0.837805
+2021-12-25 17:18:43,889 |	  model_v_in_main test loss : 0.910425
+2021-12-25 17:18:43,892 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0022, -0.0022, -0.0022,  ..., -0.0022, -0.0022, -0.0022],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:18:43,893 |	  Step count: 12
+2021-12-25 17:18:55,793 |	  loss_w (train):1.0456403288117144e-05
+2021-12-25 17:18:57,092 |	  v_loss (train):153.5947265625
+2021-12-25 17:18:57,433 |	  model_w_in_main test loss : 0.837647
+2021-12-25 17:18:57,494 |	  model_v_in_main test loss : 0.903791
+2021-12-25 17:18:57,496 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0015, -0.0015, -0.0015,  ..., -0.0015, -0.0015, -0.0015],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:18:57,498 |	  Step count: 13
+2021-12-25 17:19:13,741 |	  loss_w (train):0.00010887128883041441
+2021-12-25 17:19:16,192 |	  v_loss (train):195.16326904296875
+2021-12-25 17:19:16,536 |	  model_w_in_main test loss : 0.837806
+2021-12-25 17:19:16,597 |	  model_v_in_main test loss : 0.895039
+2021-12-25 17:19:16,600 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0018, -0.0018, -0.0018,  ..., -0.0018, -0.0018, -0.0018],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:19:16,602 |	  Step count: 14
+2021-12-25 17:19:26,770 |	  loss_w (train):1.320046249020379e-05
+2021-12-25 17:19:27,528 |	  v_loss (train):68.32789611816406
+2021-12-25 17:19:27,882 |	  model_w_in_main test loss : 0.837695
+2021-12-25 17:19:27,947 |	  model_v_in_main test loss : 0.912959
+2021-12-25 17:19:27,951 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0015, -0.0015, -0.0015,  ..., -0.0015, -0.0015, -0.0015],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:19:27,953 |	  Step count: 15
+2021-12-25 17:19:38,364 |	  loss_w (train):5.452481218526373e-06
+2021-12-25 17:19:39,591 |	  v_loss (train):61.9101676940918
+2021-12-25 17:19:39,947 |	  model_w_in_main test loss : 0.837778
+2021-12-25 17:19:40,015 |	  model_v_in_main test loss : 0.950460
+2021-12-25 17:19:40,019 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0014, -0.0014, -0.0014,  ..., -0.0014, -0.0014, -0.0014],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:19:40,021 |	  Step count: 16
+2021-12-25 17:19:50,495 |	  loss_w (train):3.573971116566099e-05
+2021-12-25 17:19:51,361 |	  v_loss (train):107.85946655273438
+2021-12-25 17:19:51,734 |	  model_w_in_main test loss : 0.837789
+2021-12-25 17:19:51,803 |	  model_v_in_main test loss : 0.944061
+2021-12-25 17:19:51,806 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0017, -0.0017, -0.0017,  ..., -0.0017, -0.0017, -0.0017],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:19:51,808 |	  Step count: 17
+2021-12-25 17:20:05,204 |	  loss_w (train):4.6973482312751e-06
+2021-12-25 17:20:06,918 |	  v_loss (train):180.8990478515625
+2021-12-25 17:20:07,267 |	  model_w_in_main test loss : 0.837776
+2021-12-25 17:20:07,328 |	  model_v_in_main test loss : 0.912931
+2021-12-25 17:20:07,331 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0018, -0.0018, -0.0018,  ..., -0.0018, -0.0018, -0.0018],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:20:07,334 |	  Step count: 18
+2021-12-25 17:20:20,496 |	  loss_w (train):2.2036351765564177e-06
+2021-12-25 17:20:22,027 |	  v_loss (train):92.52146911621094
+2021-12-25 17:20:22,397 |	  model_w_in_main test loss : 0.837776
+2021-12-25 17:20:22,468 |	  model_v_in_main test loss : 0.939659
+2021-12-25 17:20:22,472 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0022, -0.0022, -0.0022,  ..., -0.0022, -0.0022, -0.0022],
+       device='cuda:0', requires_grad=True))
+2021-12-25 17:20:22,473 |	  Step count: 19
+2021-12-25 17:20:35,984 |	  loss_w (train):1.5511142919422127e-05

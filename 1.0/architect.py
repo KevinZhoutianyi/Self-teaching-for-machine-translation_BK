@@ -42,7 +42,7 @@ class Architect(object):
         # change to .parameters()
 
         self.optimizer_A = torch.optim.Adam(self.A.parameters(), 
-          lr=lr, betas=(0.5, 0.999), weight_decay=decay)
+          lr=A_lr, betas=(0.5, 0.999), weight_decay=decay)
 
 
 
@@ -173,7 +173,7 @@ class Architect(object):
                 v.grad.data.copy_(g.data)
 
         self.optimizer_A.step()
-
+        # TODO: A.alpha got same value for all training data
         del unrolled_w_model
 
         del unrolled_v_model
