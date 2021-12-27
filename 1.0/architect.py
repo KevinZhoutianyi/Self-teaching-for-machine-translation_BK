@@ -166,7 +166,11 @@ class Architect(object):
 
         # # change to ctg dataset importance
         # # change to .parameters()
+        print(self.A.parameters())
+        print(implicit_grads_A)
         for v, g in zip(self.A.parameters(), implicit_grads_A):
+            #print(g.data)tensor([1.0071e+09, 1.0071e+09, 1.0071e+09,  ..., 1.0071e+09, 1.0071e+09,
+            print(v)
             if v.grad is None:
                 v.grad = Variable(g.data)
             else:
@@ -190,7 +194,7 @@ class Architect(object):
 
         # change to ctg dataset importance
         grads_p = torch.autograd.grad(loss, self.A.parameters())
-
+        print("grads_p",grads_p)
         for p, v in zip(self.w_model.parameters(), vector):
             p.data.sub_(2*R, v)
         loss = CTG_loss(input, input_attn, target, target_attn, attn_idx, self.A, self.w_model)
@@ -211,10 +215,9 @@ class Architect(object):
     def _outer_A(self, vector_s_dash, w_input, w_target, w_input_attn,  w_target_attn, input_v, input_v_attn, attn_idx, unrolled_w_model, eta_w, eta_v, r=1e-2):
         #first finite difference method
         R1 = r / _concat(vector_s_dash).norm()
-
         for p, v in zip(self.v_model.parameters(), vector_s_dash):
+            
             p.data.add_(R1, v)
-
         unrolled_w_model.train()
 
         loss_aug_p = calc_loss_aug(input_v, input_v_attn, unrolled_w_model, self.v_model)

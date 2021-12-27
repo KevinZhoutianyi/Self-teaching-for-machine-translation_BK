@@ -1,0 +1,87 @@
+2021-12-26 20:23:55,812 |	  Reusing dataset opus_euconst (/home/li/.cache/huggingface/datasets/opus_euconst/en-fr/1.0.0/d1e611a011f28fdda67a97024820e0a3813b4e4decca194d9a20b3207a39b908)
+2021-12-26 20:23:55,860 |	  DatasetDict({
+    train: Dataset({
+        features: ['translation'],
+        num_rows: 10104
+    })
+})
+2021-12-26 20:23:55,863 |	  {'translation': {'en': 'CONSIDERING that Article IV-437(2)(e) of the Constitution provides that the Treaty of 16 April 2003 concerning the accessions referred to above shall be repealed;  ', 'fr': "CONSIDÉRANT que l'article\xa0IV-437, paragraphe\xa02, point\xa0e), de la Constitution prévoit l'abrogation du traité du 16\xa0avril 2003 relatif aux adhésions visées ci-dessus;  "}}
+2021-12-26 20:23:58,707 |	  Loading cached shuffled indices for dataset at /home/li/.cache/huggingface/datasets/opus_euconst/en-fr/1.0.0/d1e611a011f28fdda67a97024820e0a3813b4e4decca194d9a20b3207a39b908/cache-774986f0005795ce.arrow
+2021-12-26 20:23:59,302 |	  train len: 7578
+2021-12-26 20:23:59,303 |	  valid len: 1263
+2021-12-26 20:23:59,304 |	  test len: 1263
+2021-12-26 20:23:59,305 |	  {'en': 'translate English to French:, on the basis of Article\xa02, and shall report thereon at least once a year.  ', 'fr': "L'Agence européenne de défense contribue à l'évaluation régulière des contributions des États membres participants en matière de capacités, en particulier des contributions fournies suivant les critères qui seront établis, entre autres, sur la base de l'article\xa02, et en fait rapport au moins une fois par an.  "}
+2021-12-26 20:24:17,178 |	  Step count: 0
+2021-12-26 20:24:36,941 |	  loss_w (train):3.4845939808292314e-05
+2021-12-26 20:24:40,016 |	  v_loss (train):333.8587341308594
+2021-12-26 20:24:40,356 |	  model_w_in_main test loss : 0.837824
+2021-12-26 20:24:40,421 |	  model_v_in_main test loss : 0.831462
+2021-12-26 20:24:40,425 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0099, -0.0099, -0.0099,  ..., -0.0099, -0.0099, -0.0099],
+       device='cuda:0', requires_grad=True))
+2021-12-26 20:24:40,427 |	  Step count: 1
+2021-12-26 20:24:50,698 |	  loss_w (train):6.766241131117567e-05
+2021-12-26 20:24:51,754 |	  v_loss (train):111.9421157836914
+2021-12-26 20:24:52,038 |	  model_w_in_main test loss : 0.837778
+2021-12-26 20:24:52,096 |	  model_v_in_main test loss : 0.868355
+2021-12-26 20:24:52,099 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0182, -0.0182, -0.0182,  ..., -0.0182, -0.0182, -0.0182],
+       device='cuda:0', requires_grad=True))
+2021-12-26 20:24:52,103 |	  Step count: 2
+2021-12-26 20:25:09,400 |	  loss_w (train):1.554307709739078e-05
+2021-12-26 20:25:12,367 |	  v_loss (train):263.779052734375
+2021-12-26 20:25:12,740 |	  model_w_in_main test loss : 0.837844
+2021-12-26 20:25:12,808 |	  model_v_in_main test loss : 0.852040
+2021-12-26 20:25:12,812 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0227, -0.0227, -0.0227,  ..., -0.0227, -0.0227, -0.0227],
+       device='cuda:0', requires_grad=True))
+2021-12-26 20:25:12,814 |	  Step count: 3
+2021-12-26 20:25:22,336 |	  loss_w (train):1.6379937733290717e-05
+2021-12-26 20:25:22,822 |	  v_loss (train):90.01312255859375
+2021-12-26 20:25:23,175 |	  model_w_in_main test loss : 0.837775
+2021-12-26 20:25:23,239 |	  model_v_in_main test loss : 0.853961
+2021-12-26 20:25:23,242 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0257, -0.0257, -0.0257,  ..., -0.0257, -0.0257, -0.0257],
+       device='cuda:0', requires_grad=True))
+2021-12-26 20:25:23,244 |	  Step count: 4
+2021-12-26 20:25:32,709 |	  loss_w (train):2.1330436084099347e-06
+2021-12-26 20:25:33,227 |	  v_loss (train):107.91200256347656
+2021-12-26 20:25:33,547 |	  model_w_in_main test loss : 0.837734
+2021-12-26 20:25:33,610 |	  model_v_in_main test loss : 0.878200
+2021-12-26 20:25:33,613 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0247, -0.0247, -0.0247,  ..., -0.0247, -0.0247, -0.0247],
+       device='cuda:0', requires_grad=True))
+2021-12-26 20:25:33,615 |	  Step count: 5
+2021-12-26 20:25:44,604 |	  loss_w (train):7.858308526920155e-05
+2021-12-26 20:25:45,620 |	  v_loss (train):158.43104553222656
+2021-12-26 20:25:45,980 |	  model_w_in_main test loss : 0.837713
+2021-12-26 20:25:46,045 |	  model_v_in_main test loss : 0.876339
+2021-12-26 20:25:46,048 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0259, -0.0259, -0.0259,  ..., -0.0259, -0.0259, -0.0259],
+       device='cuda:0', requires_grad=True))
+2021-12-26 20:25:46,050 |	  Step count: 6
+2021-12-26 20:25:55,443 |	  loss_w (train):8.64094981807284e-05
+2021-12-26 20:25:55,934 |	  v_loss (train):82.34506225585938
+2021-12-26 20:25:56,282 |	  model_w_in_main test loss : 0.837737
+2021-12-26 20:25:56,346 |	  model_v_in_main test loss : 0.880960
+2021-12-26 20:25:56,349 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0262, -0.0262, -0.0262,  ..., -0.0262, -0.0262, -0.0262],
+       device='cuda:0', requires_grad=True))
+2021-12-26 20:25:56,352 |	  Step count: 7
+2021-12-26 20:26:06,514 |	  loss_w (train):4.451858785614604e-06
+2021-12-26 20:26:07,298 |	  v_loss (train):143.1834259033203
+2021-12-26 20:26:07,657 |	  model_w_in_main test loss : 0.837820
+2021-12-26 20:26:07,723 |	  model_v_in_main test loss : 0.887228
+2021-12-26 20:26:07,727 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0264, -0.0264, -0.0264,  ..., -0.0264, -0.0264, -0.0264],
+       device='cuda:0', requires_grad=True))
+2021-12-26 20:26:07,729 |	  Step count: 8
+2021-12-26 20:26:17,108 |	  loss_w (train):2.421941280772444e-05
+2021-12-26 20:26:17,686 |	  v_loss (train):76.80359649658203
+2021-12-26 20:26:18,029 |	  model_w_in_main test loss : 0.837707
+2021-12-26 20:26:18,094 |	  model_v_in_main test loss : 0.871066
+2021-12-26 20:26:18,097 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0135, -0.0135, -0.0135,  ..., -0.0135, -0.0135, -0.0135],
+       device='cuda:0', requires_grad=True))
+2021-12-26 20:26:18,099 |	  Step count: 9
+2021-12-26 20:26:35,268 |	  loss_w (train):8.365855137526523e-06

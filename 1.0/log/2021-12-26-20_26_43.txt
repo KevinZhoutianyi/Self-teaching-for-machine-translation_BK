@@ -1,0 +1,23 @@
+2021-12-26 20:26:43,979 |	  Reusing dataset opus_euconst (/home/li/.cache/huggingface/datasets/opus_euconst/en-fr/1.0.0/d1e611a011f28fdda67a97024820e0a3813b4e4decca194d9a20b3207a39b908)
+2021-12-26 20:26:44,014 |	  DatasetDict({
+    train: Dataset({
+        features: ['translation'],
+        num_rows: 10104
+    })
+})
+2021-12-26 20:26:44,016 |	  {'translation': {'en': 'CONSIDERING that Article IV-437(2)(e) of the Constitution provides that the Treaty of 16 April 2003 concerning the accessions referred to above shall be repealed;  ', 'fr': "CONSIDÉRANT que l'article\xa0IV-437, paragraphe\xa02, point\xa0e), de la Constitution prévoit l'abrogation du traité du 16\xa0avril 2003 relatif aux adhésions visées ci-dessus;  "}}
+2021-12-26 20:26:46,856 |	  Loading cached shuffled indices for dataset at /home/li/.cache/huggingface/datasets/opus_euconst/en-fr/1.0.0/d1e611a011f28fdda67a97024820e0a3813b4e4decca194d9a20b3207a39b908/cache-774986f0005795ce.arrow
+2021-12-26 20:26:47,350 |	  train len: 7578
+2021-12-26 20:26:47,352 |	  valid len: 1263
+2021-12-26 20:26:47,353 |	  test len: 1263
+2021-12-26 20:26:47,353 |	  {'en': 'translate English to French:, on the basis of Article\xa02, and shall report thereon at least once a year.  ', 'fr': "L'Agence européenne de défense contribue à l'évaluation régulière des contributions des États membres participants en matière de capacités, en particulier des contributions fournies suivant les critères qui seront établis, entre autres, sur la base de l'article\xa02, et en fait rapport au moins une fois par an.  "}
+2021-12-26 20:27:02,416 |	  Step count: 0
+2021-12-26 20:27:20,835 |	  A grad <class 'torch.Tensor'>
+2021-12-26 20:27:20,975 |	  loss_w (train):3.4845939808292314e-05
+2021-12-26 20:27:23,854 |	  v_loss (train):333.8587341308594
+2021-12-26 20:27:24,197 |	  model_w_in_main test loss : 0.837824
+2021-12-26 20:27:24,257 |	  model_v_in_main test loss : 0.831462
+2021-12-26 20:27:24,261 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0099, -0.0099, -0.0099,  ..., -0.0099, -0.0099, -0.0099],
+       device='cuda:0', requires_grad=True))
+2021-12-26 20:27:24,262 |	  Step count: 1
