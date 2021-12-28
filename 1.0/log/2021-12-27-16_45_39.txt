@@ -1,0 +1,46 @@
+2021-12-27 16:45:40,371 |	  Reusing dataset opus_euconst (/home/li/.cache/huggingface/datasets/opus_euconst/en-fr/1.0.0/d1e611a011f28fdda67a97024820e0a3813b4e4decca194d9a20b3207a39b908)
+2021-12-27 16:45:40,414 |	  DatasetDict({
+    train: Dataset({
+        features: ['translation'],
+        num_rows: 10104
+    })
+})
+2021-12-27 16:45:40,417 |	  {'translation': {'en': 'CONSIDERING that Article IV-437(2)(e) of the Constitution provides that the Treaty of 16 April 2003 concerning the accessions referred to above shall be repealed;  ', 'fr': "CONSIDÉRANT que l'article\xa0IV-437, paragraphe\xa02, point\xa0e), de la Constitution prévoit l'abrogation du traité du 16\xa0avril 2003 relatif aux adhésions visées ci-dessus;  "}}
+2021-12-27 16:45:43,227 |	  Loading cached shuffled indices for dataset at /home/li/.cache/huggingface/datasets/opus_euconst/en-fr/1.0.0/d1e611a011f28fdda67a97024820e0a3813b4e4decca194d9a20b3207a39b908/cache-774986f0005795ce.arrow
+2021-12-27 16:45:43,710 |	  train len: 7578
+2021-12-27 16:45:43,712 |	  valid len: 1263
+2021-12-27 16:45:43,713 |	  test len: 1263
+2021-12-27 16:45:43,713 |	  {'en': 'translate English to French:, on the basis of Article\xa02, and shall report thereon at least once a year.  ', 'fr': "L'Agence européenne de défense contribue à l'évaluation régulière des contributions des États membres participants en matière de capacités, en particulier des contributions fournies suivant les critères qui seront établis, entre autres, sur la base de l'article\xa02, et en fait rapport au moins une fois par an.  "}
+2021-12-27 16:46:04,879 |	  Step count: 0
+2021-12-27 16:47:37,533 |	  loss_w (train):0.00010237337846774608
+2021-12-27 16:48:03,153 |	  v_loss (train):401.6036376953125
+2021-12-27 16:48:05,614 |	  model_w_in_main test loss : 0.837799
+2021-12-27 16:48:05,967 |	  model_v_in_main test loss : 0.826755
+2021-12-27 16:48:06,021 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0099, -0.0099, -0.0099,  ..., -0.0099, -0.0099, -0.0099],
+       device='cuda:0', requires_grad=True))
+2021-12-27 16:48:06,023 |	  Step count: 1
+2021-12-27 16:49:35,270 |	  loss_w (train):1.5463325325981714e-05
+2021-12-27 16:49:57,820 |	  v_loss (train):341.0585021972656
+2021-12-27 16:50:00,236 |	  model_w_in_main test loss : 0.837806
+2021-12-27 16:50:00,386 |	  model_v_in_main test loss : 0.817598
+2021-12-27 16:50:00,390 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0099, -0.0099, -0.0099,  ..., -0.0099, -0.0099, -0.0099],
+       device='cuda:0', requires_grad=True))
+2021-12-27 16:50:00,396 |	  Step count: 2
+2021-12-27 16:50:26,715 |	  loss_w (train):1.7813554222811945e-05
+2021-12-27 16:50:29,962 |	  v_loss (train):144.21266174316406
+2021-12-27 16:50:32,350 |	  model_w_in_main test loss : 0.837898
+2021-12-27 16:50:32,892 |	  model_v_in_main test loss : 0.831224
+2021-12-27 16:50:32,902 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0090, -0.0090, -0.0090,  ..., -0.0090, -0.0090, -0.0090],
+       device='cuda:0', requires_grad=True))
+2021-12-27 16:50:32,904 |	  Step count: 3
+2021-12-27 16:51:11,174 |	  loss_w (train):7.928327249828726e-05
+2021-12-27 16:51:18,458 |	  v_loss (train):196.6448211669922
+2021-12-27 16:51:20,452 |	  model_w_in_main test loss : 0.837840
+2021-12-27 16:51:20,820 |	  model_v_in_main test loss : 0.840030
+2021-12-27 16:51:20,826 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-0.0103, -0.0103, -0.0103,  ..., -0.0103, -0.0103, -0.0103],
+       device='cuda:0', requires_grad=True))
+2021-12-27 16:51:20,829 |	  Step count: 4

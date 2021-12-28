@@ -23,8 +23,7 @@ seed_torch(seed_)
 def CTG_loss(input_ids, input_attn, target_ids, target_attn, attn_idx, attention_parameters, model):
     
     attention_weights = attention_parameters(attn_idx)
-    # similar to the loss defined in the BART model hugging face conditional text generation
-    
+    logging.info(f"attentionweight:{attention_weights}")
     loss_vec = model.get_loss_vec(input_ids, input_attn, target_ids = target_ids, target_attn = target_attn)
     
     loss = torch.dot(attention_weights, loss_vec)
@@ -48,8 +47,9 @@ def my_loss(input_ids, input_attn, target_ids, target_attn, model):
 # define calc_loss_aug
 
 def calc_loss_aug(input_ids, input_attn, w_model, v_model):
-
     output_ids = w_model.generate(input_ids)
+    # logging.info(f"{input_ids}")
+    # logging.info(f"{output_ids}")
     w_logits = w_model(input_ids, input_attn, target_ids = output_ids, target_attn = torch.ones_like(output_ids).long()).logits
     w_soft_idx, bart_idx = torch.max(w_logits, dim=-1, keepdims= True)
 

@@ -139,7 +139,7 @@ class Architect(object):
                 valid_out_v_attn, v_optimizer, attn_idx,  eta_w,eta_v):
         
         self.optimizer_A.zero_grad()
-
+        # print("Self.A",self.A)
         # self.optimizer_B.zero_grad()
         # # print("architec shape:",w_input.shape, w_target.shape, w_input_attn.shape, w_target_attn.shape, attn_idx.shape)
         unrolled_w_model = self._compute_unrolled_w_model(w_input, w_target, w_input_attn, w_target_attn, attn_idx, eta_w, w_optimizer)
@@ -166,8 +166,8 @@ class Architect(object):
 
         # # change to ctg dataset importance
         # # change to .parameters()
-        print(self.A.parameters())
-        print(implicit_grads_A)
+        # print(self.A.parameters())
+        # print(implicit_grads_A)
         for v, g in zip(self.A.parameters(), implicit_grads_A):
             #print(g.data)tensor([1.0071e+09, 1.0071e+09, 1.0071e+09,  ..., 1.0071e+09, 1.0071e+09,
             print(v)
@@ -194,7 +194,10 @@ class Architect(object):
 
         # change to ctg dataset importance
         grads_p = torch.autograd.grad(loss, self.A.parameters())
-        print("grads_p",grads_p)
+        # print("grads_p",type(grads_p))
+        # print("grads_p",(grads_p))
+        # print("grads_p",torch.max(grads_p[0]))
+        # print("grads_p",torch.min(grads_p[0]))
         for p, v in zip(self.w_model.parameters(), vector):
             p.data.sub_(2*R, v)
         loss = CTG_loss(input, input_attn, target, target_attn, attn_idx, self.A, self.w_model)
