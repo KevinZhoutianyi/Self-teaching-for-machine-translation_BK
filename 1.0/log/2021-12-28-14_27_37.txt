@@ -3277,3 +3277,43 @@ tensor([-4.4362, -4.4362, -4.4362,  ..., -4.4362, -4.4362, -4.4362],
 2021-12-28 15:48:27,817 |	  attentionweight:tensor([1.6824e-07, 1.6824e-07], device='cuda:0', grad_fn=<IndexBackward>)
 2021-12-28 15:48:44,863 |	  attentionweight:tensor([1.6824e-07, 1.6824e-07], device='cuda:0', grad_fn=<IndexBackward>)
 2021-12-28 15:48:45,022 |	  attentionweight:tensor([1.6824e-07, 1.6824e-07], device='cuda:0', grad_fn=<IndexBackward>)
+2021-12-28 15:48:50,762 |	  attentionweight:tensor([1.6824e-07, 1.6824e-07], device='cuda:0', grad_fn=<IndexBackward>)
+2021-12-28 15:48:50,850 |	  attentionweight:tensor([1.6824e-07, 1.6824e-07], device='cuda:0', grad_fn=<IndexBackward>)
+2021-12-28 15:48:51,245 |	  attentionweight:tensor([8.5547e-08, 2.5471e-07], device='cuda:0', grad_fn=<IndexBackward>)
+2021-12-28 15:48:51,349 |	  loss_w (train):3.51500553108508e-08
+2021-12-28 15:48:55,252 |	  v_loss (train):91.189697265625
+2021-12-28 15:48:55,806 |	  model_w_in_main test loss : 0.844063
+2021-12-28 15:48:55,921 |	  model_v_in_main test loss : 0.923746
+2021-12-28 15:48:55,924 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-4.4362, -4.4362, -4.4362,  ..., -4.4362, -4.4362, -4.4362],
+       device='cuda:0', requires_grad=True))
+2021-12-28 15:48:55,926 |	  Step count: 234
+2021-12-28 15:48:55,929 |	  attentionweight:tensor([1.5566e-07, 1.5566e-07], device='cuda:0', grad_fn=<IndexBackward>)
+2021-12-28 15:49:06,028 |	  attentionweight:tensor([1.5566e-07, 1.5566e-07], device='cuda:0', grad_fn=<IndexBackward>)
+2021-12-28 15:49:06,308 |	  attentionweight:tensor([1.5566e-07, 1.5566e-07], device='cuda:0', grad_fn=<IndexBackward>)
+2021-12-28 15:49:07,514 |	  attentionweight:tensor([1.5566e-07, 1.5566e-07], device='cuda:0', grad_fn=<IndexBackward>)
+2021-12-28 15:49:07,591 |	  attentionweight:tensor([1.5566e-07, 1.5566e-07], device='cuda:0', grad_fn=<IndexBackward>)
+2021-12-28 15:49:07,970 |	  attentionweight:tensor([1.5087e-07, 1.4904e-07], device='cuda:0', grad_fn=<IndexBackward>)
+2021-12-28 15:49:08,071 |	  loss_w (train):7.995488005008156e-08
+2021-12-28 15:49:08,925 |	  v_loss (train):1.4450093507766724
+2021-12-28 15:49:09,503 |	  model_w_in_main test loss : 0.844031
+2021-12-28 15:49:09,583 |	  model_v_in_main test loss : 0.924273
+2021-12-28 15:49:09,587 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-4.4362, -4.4362, -4.4362,  ..., -4.4362, -4.4362, -4.4362],
+       device='cuda:0', requires_grad=True))
+2021-12-28 15:49:09,588 |	  Step count: 235
+2021-12-28 15:49:09,645 |	  attentionweight:tensor([1.4974e-07, 1.4974e-07], device='cuda:0', grad_fn=<IndexBackward>)
+2021-12-28 15:49:29,015 |	  attentionweight:tensor([1.4974e-07, 1.4974e-07], device='cuda:0', grad_fn=<IndexBackward>)
+2021-12-28 15:49:29,086 |	  attentionweight:tensor([1.4974e-07, 1.4974e-07], device='cuda:0', grad_fn=<IndexBackward>)
+2021-12-28 15:49:34,989 |	  attentionweight:tensor([1.4974e-07, 1.4974e-07], device='cuda:0', grad_fn=<IndexBackward>)
+2021-12-28 15:49:35,078 |	  attentionweight:tensor([1.4974e-07, 1.4974e-07], device='cuda:0', grad_fn=<IndexBackward>)
+2021-12-28 15:49:35,465 |	  attentionweight:tensor([1.0581e-07, 6.6645e-08], device='cuda:0', grad_fn=<IndexBackward>)
+2021-12-28 15:49:35,567 |	  loss_w (train):5.702352012804113e-08
+2021-12-28 15:49:40,641 |	  v_loss (train):149.83749389648438
+2021-12-28 15:49:41,197 |	  model_w_in_main test loss : 0.844074
+2021-12-28 15:49:41,453 |	  model_v_in_main test loss : 0.922799
+2021-12-28 15:49:41,458 |	  ('Attention Weights A : ', Parameter containing:
+tensor([-4.4362, -4.4362, -4.4362,  ..., -4.4362, -4.4362, -4.4362],
+       device='cuda:0', requires_grad=True))
+2021-12-28 15:49:41,459 |	  Step count: 236
+2021-12-28 15:49:41,465 |	  attentionweight:tensor([1.3205e-07, 1.3205e-07], device='cuda:0', grad_fn=<IndexBackward>)
